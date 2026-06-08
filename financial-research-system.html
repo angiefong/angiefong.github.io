@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>Financial Research System | Wing Tung Fong</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="A technical case study by Wing Tung Fong on a verifiable multi-agent financial research system with LangGraph, FastAPI, MLflow/DagsHub evals, citation validation, and adversarial prompt-injection testing." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload portfolio-home case-study-page">
+		<div id="wrapper">
+
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">
+						<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Wing Tung Fong</span>
+					</a>
+					<nav>
+						<ul>
+							<li><a href="#menu">Menu</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+			<nav id="menu">
+				<h2>Menu</h2>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html#summary">Summary</a></li>
+					<li><a href="index.html#featured">Deep Dive</a></li>
+					<li><a href="index.html#systems">Projects</a></li>
+					<li><a href="index.html#experience">Experience</a></li>
+					<li><a href="resume.html">Resume</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<div class="inner">
+					<section class="case-hero" aria-labelledby="case-title">
+						<p class="hero-name">Featured Technical Deep Dive</p>
+						<h1 id="case-title">Verifiable Multi-Agent Financial Research System</h1>
+						<p>A public, eval-driven agentic AI project that produces source-backed financial research memos with bull/bear debate, contradiction detection, thesis-drift tracking, and evidence-span citation validation.</p>
+						<ul class="actions">
+							<li><a href="https://github.com/angiefong/equity-research-agent" class="button primary" target="_blank" rel="noopener">Open GitHub</a></li>
+							<li><a href="index.html#featured" class="button">Back To Portfolio</a></li>
+						</ul>
+					</section>
+
+					<section class="case-metrics" aria-label="Case study proof points">
+						<div><strong>2.21 -> 3.29</strong><span>same-model judge score lift from targeted prompt and citation changes</span></div>
+						<div><strong>15 nodes</strong><span>LangGraph pipeline across evidence, debate, verification, reroute, and snapshot stages</span></div>
+						<div><strong>110 tests</strong><span>architecture review and regression coverage after simplification passes</span></div>
+						<div><strong>10 attacks</strong><span>adversarial news-injection fixtures measured by absorption rate</span></div>
+					</section>
+
+					<section class="case-body" aria-label="Case study details">
+						<article>
+							<h2>Problem</h2>
+							<p>LLM financial research can sound polished while hiding unsupported claims, stale evidence, arithmetic mistakes, or prompt-injected news content. The goal was not to create a trading bot; it was to build a research system where every factual claim could be traced, checked, and improved through evals.</p>
+						</article>
+
+						<article>
+							<h2>Architecture</h2>
+							<p>The system uses a LangGraph StateGraph with parallel evidence streams for market data, SEC filings, news, and quant data. A supervisor routes query types, bull and bear agents synthesize opposing cases, contradiction detectors compare evidence and claims, and a verifier can reroute failed claims back to source agents before a moderator assembles the final memo.</p>
+							<div class="architecture-flow" aria-label="Architecture flow">
+								<span>Supervisor</span>
+								<span>Evidence Streams</span>
+								<span>Quant Interpretation</span>
+								<span>Bull / Bear Debate</span>
+								<span>Verifier + Reroute</span>
+								<span>Thesis Replay</span>
+								<span>Moderator Memo</span>
+							</div>
+						</article>
+
+						<article>
+							<h2>Evaluation Methodology</h2>
+							<p>Every change is scored with an 8-metric LLM-as-judge rubric tracked in MLflow and DagsHub. The quick eval set uses AAPL and RIVN so each prompt change is tested against different financial profiles under same-model isolation. A targeted improvement pass moved the overall score from 2.21 to 3.29, a roughly 49% lift.</p>
+						</article>
+
+						<article>
+							<h2>Reliability And Guardrails</h2>
+							<p>The citation system uses source references tied to evidence spans instead of loose numeric citations. Agents cannot invent sources because citations are validated against the evidence list. A verifier flags high-severity unsupported claims and reroutes to relevant source agents, capped at two attempts to avoid infinite loops.</p>
+						</article>
+
+						<article>
+							<h2>Adversarial Testing</h2>
+							<p>The adversarial harness injects poisoned news spans across explicit instruction, role hijack, misleading quotation, fabricated metric, and source-reference spoof categories. The primary metric is absorption rate, with diagnostics showing whether a case was caught by the verifier, agent refusal, or citation layer.</p>
+						</article>
+
+						<article>
+							<h2>Tradeoffs</h2>
+							<p>I kept the per-source agent layer because two source agents do real domain work, and a generic fetch abstraction would hide important differences. I also avoided a broad step framework for LLM calls because the shared code was small, while the eval lift came from targeted per-agent prompt changes.</p>
+						</article>
+
+						<article>
+							<h2>Stack</h2>
+							<ul class="tag-list case-tags">
+								<li>Python</li>
+								<li>LangGraph</li>
+								<li>FastAPI</li>
+								<li>Next.js</li>
+								<li>Pydantic</li>
+								<li>MLflow</li>
+								<li>DagsHub</li>
+								<li>SQLite checkpointer</li>
+								<li>Railway</li>
+								<li>Playwright</li>
+							</ul>
+						</article>
+					</section>
+				</div>
+			</div>
+
+			<footer id="footer">
+				<div class="inner" id="contact">
+					<section>
+						<h2>Get In Touch</h2>
+						<p>Open to data science, ML, and fintech analytics roles, with a particular interest in teams operating between the United States and Japan.</p>
+					</section>
+					<section>
+						<h2>Contact</h2>
+						<ul class="icons">
+							<li><a href="mailto:fwtangie@gmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+							<li><a href="https://www.linkedin.com/in/angie-fong/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/angiefong" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="Resume_Wing_Tung_Fong_2026.pdf" class="icon solid style2 fa-file-alt"><span class="label">Resume</span></a></li>
+						</ul>
+					</section>
+					<ul class="copyright">
+						<li>&copy; Wing Tung Fong. All rights reserved</li><li>Design foundation: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
